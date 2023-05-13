@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+
+    <title>Frontend Mentor | Results summary component</title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      :root {
+        --Light-red: hsla(0, 100%, 67%);
+        --Orangey-yellow: hsl(39, 100%, 56%);
+        --Green-teal: hsl(166, 100%, 37%);
+        --Cobalt-blue: hsl(234, 85%, 45%);
+
+        --Light-slate-blue-background: hsl(252, 100%, 67%);
+        --Light-royal-blue-background: hsl(241, 81%, 54%);
+        --Violet-blue-circle: hsla(256, 72%, 46%, 1);
+        --Persian-blue-circle: hsla(241, 72%, 46%, 0);
+
+        --White: hsl(0, 0%, 100%);
+        --Pale-blue: hsl(221, 100%, 96%);
+        --Light-lavender: hsl(241, 100%, 89%);
+        --Dark-gray-blue: hsl(224, 30%, 27%);
+      }
+
+      @import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@500;700;800&display=swap");
+      * {
+        font-family: "Hanken Grotesk", sans-serif;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      li {
+        list-style-type: none;
+      }
+
+      body {
+        background-color: var(--Pale-blue);
+      }
+
+      .container {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .summary-wrap {
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+          rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+        border-radius: 24px;
+        background-color: var(--White);
+        width: 650px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .right-result {
+        width: 50%;
+        padding: 16px 24px;
+        border-radius: 24px;
+        background: linear-gradient(
+          to bottom,
+          var(--Light-slate-blue-background),
+          var(--Light-royal-blue-background)
+        );
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      .title {
+        margin: 16px 0;
+        color: var(--Light-lavender);
+      }
+
+      .circle {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background: linear-gradient(
+          to bottom,
+          var(--Violet-blue-circle),
+          var(--Persian-blue-circle)
+        );
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .subtitle {
+        color: var(--White);
+        font-size: 18px;
+        margin-bottom: 16px;
+      }
+
+      .desc {
+        color: var(--Light-lavender);
+        width: 200px;
+        margin-bottom: 16px;
+      }
+
+      .circle h1 {
+        color: var(--White);
+        font-size: 52px;
+      }
+
+      .circle p {
+        color: var(--Light-lavender);
+      }
+
+      .subtitle {
+        font-weight: bold;
+      }
+
+      .desc {
+        text-align: center;
+      }
+
+      .left-summary {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        padding: 1.5rem 2rem;
+        gap: 1rem;
+      }
+
+      .title-summary {
+        font-weight: bold;
+      }
+
+      .rows {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+
+      .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0.5rem;
+        border-radius: 10px;
+      }
+
+      .row:nth-child(1) {
+        background-color: hsla(0, 100%, 67%, 0.2);
+      }
+
+      .row:nth-child(1) .badge span b {
+        color: var(--Light-red);
+      }
+
+      .row:nth-child(1) span b:nth-child(2) {
+        color: var(--Dark-gray-blue);
+      }
+
+      .row:nth-child(2) {
+        background-color: hsla(39, 100%, 56%, 0.2);
+      }
+
+      .row:nth-child(2) .badge span b {
+        color: var(--Orangey-yellow);
+      }
+
+      .row:nth-child(2) span b:nth-child(2) {
+        color: var(--Dark-gray-blue);
+      }
+
+      .row:nth-child(3) {
+        background-color: hsla(166, 100%, 37%, 0.2);
+      }
+
+      .row:nth-child(3) .badge span b {
+        color: var(--Green-teal);
+      }
+
+      .row:nth-child(3) span b:nth-child(2) {
+        color: var(--Dark-gray-blue);
+      }
+
+      .row:nth-child(4) {
+        background-color: hsla(234, 85%, 45%, 0.2);
+      }
+
+      .row:nth-child(4) .badge span b {
+        color: var(--Cobalt-blue);
+      }
+
+      .row:nth-child(4) span b:nth-child(2) {
+        color: var(--Dark-gray-blue);
+      }
+
+      .badge {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+
+      .btn {
+        margin-top: 1rem;
+        padding: 1rem;
+        border: none;
+        border-radius: 2rem;
+        background-color: var(--Dark-gray-blue);
+        color: white;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        background: linear-gradient(
+          to bottom,
+          var(--Light-slate-blue-background),
+          var(--Light-royal-blue-background)
+        );
+      }
+
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+
+      @media screen and (max-width: 650px) {
+        .container {
+          align-items: flex-start;
+          background-color: white;
+        }
+
+        .summary-wrap {
+          box-shadow: none;
+          flex-direction: column;
+          gap: 2rem;
+        }
+
+        .right-result {
+          width: 100%;
+          border-radius: 0 0 2rem 2rem;
+        }
+
+        .desc {
+          width: 250px;
+        }
+
+        .left-summary {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="summary-wrap">
+        <div class="right-result">
+          <h3 class="title">Your Result</h3>
+          <div class="circle">
+            <h1>76</h1>
+            <p>of 100</p>
+          </div>
+          <p class="subtitle">Great</p>
+          <p class="desc">
+            You scored than higher 65% of the people who have taken the tests.
+          </p>
+        </div>
+        <div class="left-summary">
+          <h3 class="title-summary">Summary</h3>
+          <div class="rows">
+            <div class="row">
+              <div class="badge">
+                <img src="assets/images/icon-reaction.svg" alt="Logo 1" />
+                <span><b>Reaction</b></span>
+              </div>
+              <span><b>80</b> / <b>100</b></span>
+            </div>
+            <div class="row">
+              <div class="badge">
+                <img src="assets/images/icon-memory.svg" alt="Logo 1" />
+                <span><b>Memory</b></span>
+              </div>
+              <span><b>92</b> / <b>100</b></span>
+            </div>
+            <div class="row">
+              <div class="badge">
+                <img src="assets/images/icon-verbal.svg" alt="Logo 1" />
+                <span><b>Verbal</b></span>
+              </div>
+              <span><b>61</b> / <b>100</b></span>
+            </div>
+            <div class="row">
+              <div class="badge">
+                <img src="assets/images/icon-visual.svg" alt="Logo 1" />
+                <span><b>Visual</b></span>
+              </div>
+              <span><b>72</b> / <b>100</b></span>
+            </div>
+          </div>
+          <button class="btn" type="button">Continue</button>
+        </div>
+      </div>
+    </div>
+    <div class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. Coded by <a href="#">Your Name Here</a>.
+    </div>
+  </body>
+</html>
